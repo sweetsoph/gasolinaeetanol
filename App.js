@@ -8,11 +8,12 @@ export default function App() {
   const[txtMensagem, setTxtMensagem] = useState();
 
   function verificaResultado(){
-    setVlResultado (parseFloat(vlEtanol) / parseFloat(vlGasolina));
-    if(vlResultado > 0.7){
-      setTxtMensagem("É mais vantajoso abastecer com gasolina.");
-    }else if(vlResultado <= 0.7){
+    let diferenca = (parseFloat(vlEtanol) / parseFloat(vlGasolina));
+    setVlResultado (diferenca.toFixed(2));
+    if(diferenca <= 0.7){
       setTxtMensagem("É mais vantajoso abastecer com álcool.");
+    }else{
+      setTxtMensagem("É mais vantajoso abastecer com gasolina.");
     }
   }
 
@@ -47,7 +48,7 @@ export default function App() {
         </TouchableOpacity>
       </View>
       <View style={styles.bloco}>
-            <Text style={styles.textoBloco}>Resultado: {txtMensagem}</Text>
+            <Text style={styles.textoBloco}>Resultado: {vlResultado}. {txtMensagem}</Text>
       </View>
     </View>
   );
